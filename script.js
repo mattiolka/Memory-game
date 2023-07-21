@@ -29,7 +29,7 @@ function shuffleDiv(container) {
     }
 }
         
-function creatingCards(number){
+function creatgCard(number){
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.back = number;
@@ -71,10 +71,9 @@ result.innerHTML = checkNumber;
 
 for(let i = 1; i <= +numberOfCards; i++){
     for(let t = 0; t < 2; t++){
-        gridContainer.appendChild(creatingCards(i));
+        gridContainer.appendChild(creatgCard(i));
     }
 }
-
 shuffleDiv(gridContainer);
 
 const cards = document.querySelectorAll('.card');
