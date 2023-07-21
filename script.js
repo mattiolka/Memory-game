@@ -2,10 +2,10 @@ function flipCard() {
     const flippedCards = document.querySelectorAll('.flipped');
     if(flippedCards.length == 2 ) {
         if(flippedCards[0].dataset.back == flippedCards[1].dataset.back){
-            result.innerHTML = checkNumber += 1;
-            gridContainer.removeChild(document.querySelector(`[data-back="${flippedCards[0].dataset.back}"]`));
-            gridContainer.removeChild(document.querySelector(`[data-back="${flippedCards[1].dataset.back}"]`));
-            //flippedCards[0].remove();
+            result.displayScore();
+
+            flippedCards[0].remove();
+            flippedCards[1].remove();
 
             shuffleCards(gridContainer)
         }
@@ -65,9 +65,16 @@ couple.innerHTML = numberOfCards;
 
 const gridContainer = document.querySelector('.grid-container');
 
-const result = document.querySelector('#result');
-let checkNumber = 0;
-result.innerHTML = checkNumber;
+    
+const result = {
+    correctCount: 0,
+    resultS: document.querySelector('#result'),
+    displayScore: function() {
+        this.correctCount++;
+        this.resultS.innerHTML = this.correctCount;
+    }
+}
+
 
 for(let i = 1; i <= +numberOfCards; i++){
     for(let t = 0; t < 2; t++){
