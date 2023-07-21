@@ -2,12 +2,12 @@ function flipCard() {
     const flippedCards = document.querySelectorAll('.flipped');
     if(flippedCards.length == 2 ) {
         if(flippedCards[0].dataset.back == flippedCards[1].dataset.back){
-            result.innerHTML = `${checkNumber += 1}`;
+            result.innerHTML = checkNumber += 1;
             gridContainer.removeChild(document.querySelector(`[data-back="${flippedCards[0].dataset.back}"]`));
             gridContainer.removeChild(document.querySelector(`[data-back="${flippedCards[1].dataset.back}"]`));
             //flippedCards[0].remove();
 
-            shuffleDiv(gridContainer)
+            shuffleCards(gridContainer)
         }
 
         setTimeout(() => {
@@ -23,7 +23,7 @@ function flipCard() {
     
 }
 
-function shuffleDiv(container) {
+function shuffleCards(container) {
     for (let i = container.children.length; i >= 0; i--) {
         container.appendChild(container.children[Math.random() * i | 0]);
     }
@@ -65,7 +65,7 @@ couple.innerHTML = numberOfCards;
 
 const gridContainer = document.querySelector('.grid-container');
 
-const result = document.querySelector('#check');
+const result = document.querySelector('#result');
 let checkNumber = 0;
 result.innerHTML = checkNumber;
 
@@ -74,7 +74,7 @@ for(let i = 1; i <= +numberOfCards; i++){
         gridContainer.appendChild(creatgCard(i));
     }
 }
-shuffleDiv(gridContainer);
+shuffleCards(gridContainer);
 
 const cards = document.querySelectorAll('.card');
 
