@@ -32,6 +32,7 @@ function shuffleCards(container) {
 function creatgCard(number){
     const card = document.createElement('div');
     card.classList.add('card');
+    card.addEventListener('click', flipCard)
     card.dataset.back = number;
 
     const cardInner = document.createElement('div');
@@ -64,7 +65,6 @@ const couple = document.querySelector('#couple');
 couple.innerHTML = numberOfCards;
 
 const gridContainer = document.querySelector('.grid-container');
-
     
 const result = {
     correctCount: 0,
@@ -75,17 +75,10 @@ const result = {
     }
 }
 
-
 for(let i = 1; i <= +numberOfCards; i++){
     for(let t = 0; t < 2; t++){
         gridContainer.appendChild(creatgCard(i));
     }
 }
 shuffleCards(gridContainer);
-
-const cards = document.querySelectorAll('.card');
-
-cards.forEach(card => {
-    card.addEventListener('click', flipCard)       
-})
 
