@@ -1,26 +1,25 @@
 function flipCard() {
-    const flippedCards = document.querySelectorAll('.flipped');
-    if(flippedCards.length == 2 ) {
-        if(flippedCards[0].dataset.back == flippedCards[1].dataset.back){
-            result.displayScore();
+    let flippedCards = document.querySelectorAll('.flipped');
 
-            flippedCards[0].remove();
-            flippedCards[1].remove();
-
-            shuffleCards(gridContainer)
-        }
-
-        setTimeout(() => {
-            flippedCards.forEach(c => {
-                c.classList.remove('flipped');
-            })
-        }, 500)
-
-        return;
+    if (flippedCards.length < 2) {
+        this.classList.add('flipped');
+        flippedCards = document.querySelectorAll('.flipped');
     }
-    
-    this.classList.add('flipped'); 
-    
+
+    if (flippedCards.length == 2) {
+        setTimeout(() => {
+            if (flippedCards[0].dataset.back == flippedCards[1].dataset.back) {
+                result.displayScore();
+
+                flippedCards[0].remove();
+                flippedCards[1].remove();
+            } else {
+                flippedCards.forEach(c => {
+                    c.classList.remove('flipped');
+                })
+            }
+        }, 1500);
+    }
 }
 
 function shuffleCards(container) {
@@ -28,8 +27,8 @@ function shuffleCards(container) {
         container.appendChild(container.children[Math.random() * i | 0]);
     }
 }
-        
-function creatgCard(number){
+
+function creatgCard(number) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.addEventListener('click', flipCard)
@@ -57,7 +56,7 @@ function creatgCard(number){
     cardFront.appendChild(rubashka);
     cardBack.appendChild(picture);
 
-    return card;  
+    return card;
 }
 
 const numberOfCards = prompt("Скільки пар карток від 1 до 6?", '');
@@ -65,20 +64,21 @@ const couple = document.querySelector('#couple');
 couple.innerHTML = numberOfCards;
 
 const gridContainer = document.querySelector('.grid-container');
-    
+
 const result = {
     correctCount: 0,
     resultS: document.querySelector('#result'),
-    displayScore: function() {
+    displayScore: function () {
         this.correctCount++;
         this.resultS.innerHTML = this.correctCount;
     }
 }
 
-for(let i = 1; i <= +numberOfCards; i++){
-    for(let t = 0; t < 2; t++){
+for (let i = 1; i <= +numberOfCards; i++) {
+    for (let t = 0; t < 2; t++) {
         gridContainer.appendChild(creatgCard(i));
     }
 }
+
 shuffleCards(gridContainer);
 
