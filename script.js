@@ -49,9 +49,9 @@ function creatgCard(number) {
     cardInner.appendChild(cardBack);
 
     const rubashka = document.createElement('img');
-    rubashka.src = 'rubashka.jpg';
+    rubashka.src = './img/rubashka.jpg';
     const picture = document.createElement('img');
-    picture.src = `${number}.jpg`;
+    picture.src = `./img/${number}.jpg`;
 
     cardFront.appendChild(rubashka);
     cardBack.appendChild(picture);
@@ -59,11 +59,13 @@ function creatgCard(number) {
     return card;
 }
 
-const numberOfCards = prompt("Скільки пар карток від 1 до 6?", '');
+const gridContainer = document.querySelector('.grid-container');
+let numberOfCards = prompt("Скільки пар карток від 1 до 6?", '');
+
 const couple = document.querySelector('#couple');
 couple.innerHTML = numberOfCards;
 
-const gridContainer = document.querySelector('.grid-container');
+
 
 const result = {
     correctCount: 0,
