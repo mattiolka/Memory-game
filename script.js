@@ -7,7 +7,12 @@ function flipCard() {
     }
 
     if (flippedCards.length == 2) {
-        setTimeout(() => {
+        if (timeoutId) {
+            console.log('жди', timeoutId);
+            return;
+        }
+
+        timeoutId = setTimeout(() => {
             if (flippedCards[0].dataset.back == flippedCards[1].dataset.back) {
                 result.displayScore();
 
@@ -18,7 +23,10 @@ function flipCard() {
                     c.classList.remove('flipped');
                 })
             }
+            
+            timeoutId = null;
         }, 1500);
+
     }
 }
 
@@ -61,6 +69,7 @@ function creatgCard(number) {
 
 const gridContainer = document.querySelector('.grid-container');
 let numberOfCards = prompt("Скільки пар карток від 1 до 6?", '');
+let timeoutId;
 
 const couple = document.querySelector('#couple');
 couple.innerHTML = numberOfCards;
